@@ -1,0 +1,202 @@
+CREATE TABLE 'apartment' (
+	'AptID' VARCHAR(40) NOT NULL COLLATE 'utf8_general_ci',
+	'AptName' VARCHAR(20) NOT NULL COLLATE 'utf8_general_ci',
+	'HouseholdNum' INT(11) NOT NULL,
+	'DongNum' INT(11) NOT NULL,
+	'AptCity' VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
+	PRIMARY KEY ('AptID') USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+
+CREATE TABLE conference (
+	'conId' VARCHAR(40) NOT NULL COMMENT '회의고유키' COLLATE 'utf8_general_ci',
+	'conDate' DATETIME NOT NULL COMMENT '회의일시',
+	'noticeRegiDate' DATETIME NOT NULL COMMENT '회의개최등록일시',
+	'noticeModiDate' DATETIME NOT NULL COMMENT '회의개최수정일시',
+	'type' BOOL NOT NULL COMMENT '회의종류' COLLATE 'utf8_general_ci',
+	'conState' INT(5) NOT NULL COMMENT '상태' COLLATE 'utf8_general_ci',
+	'audApiMeth' VARCHAR(100) NOT NULL COMMENT '방청신청방법' COLLATE 'utf8_general_ci',
+	'conPlace' VARCHAR(50) NOT NULL COMMENT '회의장소' COLLATE 'utf8_general_ci',
+	'noticeDeadlineStart'DATETIME COMMENT '개최공고문게시시작일' COLLATE 'utf8_general_ci',
+	'noticeDeadlineEnd' DATETIME COMMENT '개최공고문게시마감일' COLLATE 'utf8_general_ci',
+	'noticePostingPlace' VARCHAR(50) COMMENT '개최공고문게시장소' COLLATE 'utf8_general_ci',
+	'noticePublisher' VARCHAR(20) COMMENT '개최공고문게시자' COLLATE 'utf8_general_ci',
+	'noticeNoticeNum' VARCHAR(40) COMMENT '개최공고문개최공고번호' COLLATE 'utf8_general_ci',
+	'conMember' INT(5) COMMENT '구성원' COLLATE 'utf8_general_ci',
+	'conRegident' INT(5) COMMENT '미선출' COLLATE 'utf8_general_ci',
+	'conCapacity' INT(5) COMMENT '총원' COLLATE 'utf8_general_ci',
+	'conAttendee' INT(5) COMMENT '참석자' COLLATE 'utf8_general_ci',
+	'conAbsentee' INT(5) COMMENT '불참자' COLLATE 'utf8_general_ci',
+	'statement' TEXT COMMENT '발언내용' COLLATE 'utf8_general_ci',
+	'resultDeadlineStart' VARCHAR(100) COMMENT '결과공고문게시시작일' COLLATE 'utf8_general_ci',
+	'resultDeadlineEnd' VARCHAR(100) COMMENT '결과공고문게시마감일' COLLATE 'utf8_general_ci',
+	'resultPostingPlace' VARCHAR(100) COMMENT '결과공고문게시장소' COLLATE 'utf8_general_ci',
+	'resultPublisher' VARCHAR(100) COMMENT '결과공고문게시자' COLLATE 'utf8_general_ci',
+	'resultNoticeNum' VARCHAR(100) COMMENT '결과공고번호' COLLATE 'utf8_general_ci',
+	'resultRegiDate' DATETIME NOT NULL COMMENT '결과등록일시',
+	'resultModiDate' DATETIME NOT NULL COMMENT '결과수정일시',
+
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+
+CREATE TABLE conference (
+	`conId` VARCHAR(40) NOT NULL ,
+	`conDate` DATETIME NOT NULL ,
+	`noticeRegiDate` DATETIME NOT NULL ,
+	`noticeModiDate` DATETIME NOT NULL ,
+	`type` BOOL NOT NULL ,
+	`conState` INT(5) NOT NULL ,
+	`audApiMeth` VARCHAR(100) NOT NULL ,
+	`conPlace` VARCHAR(50) NOT NULL ,
+	`noticeDeadlineStart`DATETIME ,
+	`noticeDeadlineEnd` DATETIME ,
+	`noticePostingPlace` VARCHAR(50) ,
+	`noticePublisher` VARCHAR(20) ,
+	`noticeNoticeNum` VARCHAR(40) ,
+	`conMember` INT(5) ,
+	`conRegident` INT(5) ,
+	`conCapacity` INT(5) ,
+	`conAttendee` INT(5) ,
+	`conAbsentee` INT(5) ,
+	`statement` TEXT ,
+	`resultDeadlineStart` VARCHAR(100) ,
+	`resultDeadlineEnd` VARCHAR(100) ,
+	`resultPostingPlace` VARCHAR(100) ,
+	`resultPublisher` VARCHAR(100) ,
+	`resultNoticeNum` VARCHAR(100) ,
+	`resultRegiDate` DATETIME NOT NULL ,
+	`resultModiDate` DATETIME NOT NULL 
+
+)
+COLLATE=`utf8_general_ci`
+ENGINE=InnoDB
+;
+
+CREATE TABLE agenda (
+	`agendaID` VARCHAR(40) NOT NULL ,
+	`conID` VARCHAR(40) NOT NULL ,
+	`agendaTitle` VARCHAR(200) NOT NULL ,
+	`contents` TEXT NOT NULL ,
+	`agendaState` INT(5) NOT NULL ,
+	`voteMethod` INT(5) NOT NULL ,
+	`numAgree` INT(10) NOT NULL ,
+	`numOppo` INT(10) NOT NULL ,
+	`numAbst` INT(10) NOT NULL ,
+	`agendaDecision` VARCHAR(1000) NOT NULL ,
+	`evidence` TEXT NOT NULL ,
+	`reference` TEXT NOT NULL ,
+	`agendaContent` VARCHAR(1000) NOT NULL ,
+	`procDetail` VARCHAR(1000) NOT NULL ,
+	`quorum` INT(10) NOT NULL ,
+	`agendaCapacity` INT(10) NOT NULL ,
+	`agendaAttendee` INT(10) NOT NULL ,
+	`resultRegiDate` DATETIME NOT NULL ,
+	`resultModiDate` DATETIME NOT NULL ,
+)
+COLLATE=`utf8_general_ci`
+ENGINE=InnoDB
+;
+
+CREATE TABLE user (
+	`userID` VARCHAR(40) NOT NULL ,
+	`aptID` VARCHAR(40) NOT NULL ,
+	`positionID` VARCHAR(40) NOT NULL ,
+	`name` VARCHAR(10) NOT NULL ,
+	`phoneNum` VARCHAR(13) NOT NULL ,
+	`emailAddr` VARCHAR(100) ,
+	`dongNum` INT(10) NOT NULL ,
+	`houseHoldNum` INT(10) NOT NULL ,
+	`transferDate` DATETIME NOT NULL ,
+	`state` INT(5) NOT NULL ,
+)
+COLLATE=`utf8_general_ci`
+ENGINE=InnoDB
+;
+
+CREATE TABLE position (
+	`positionID` VARCHAR(40) NOT NULL ,
+	`positionName` VARCHAR(10) NOT NULL ,
+	`num` INT(10) NOT NULL ,
+	`conNotice` VARCHAR(4) NOT NULL ,
+	`ConResult` VARCHAR(4) NOT NULL ,
+	`ItemProc` VARCHAR(4) NOT NULL ,
+	`MemberMgt` VARCHAR(4) NOT NULL ,
+	`RightCorrection` BOOL NOT NULL ,
+	`Norification` BOOL NOT NULL ,
+	`MemInfoMgt` BOOL NOT NULL 
+)
+COLLATE=`utf8_general_ci`
+ENGINE=InnoDB
+;
+
+
+
+
+// 공동주택  -------------------------------------------------------------
+
+
+insert into apartment values ("APT000000001", "욱일아파트", 1500,10,"세종특별자치시 조치원읍 충현로 159" );
+insert into apartment values ("APT000000002", "자이아파트", 1429,25,"세종특별자치시 조치원읍 죽림리 396" );
+
+
+// 직책  -------------------------------------------------------------
+insert into position values ("POS001", "회장",1, "1111","1111","1111","101",1,11,11 );
+insert into position values ("POS002", "이사",2, "1101","1101","1101","100",0,11,11 );
+insert into position values ("POS003", "감사",2, "0100","0100","0100","100",0,11,11 );
+insert into position values ("POS004", "동대표",10, "0100","0100","0100","100",0,01,01 );
+insert into position values ("POS005", "입주자",null, "0100","0100","0100","100",0,01,01 );
+insert into position values ("POS006", "외부인",null, "0000","0000","0000","010",0,00,00 );
+
+
+// 회원  -------------------------------------------------------------
+insert into user values ("USER000001", "APT000000001", "POS001","이나윤","010-0000-0001","nayun@test.com",1,5,"2015.11.22",3);
+
+insert into user values ("USER000002", "APT000000001", "POS002","오승환","010-0000-0002","osh@test.com",2,5,"2015.10.22",3);
+insert into user values ("USER000003", "APT000000001", "POS002","황승민","010-0000-0003","hsm@test.com",3,8,"2015.09.22",3);
+
+insert into user values ("USER000004", "APT000000001", "POS003","박보검","010-0000-0004","pbk@test.com",4,7,"2015.08.22",3);
+insert into user values ("USER000005", "APT000000001", "POS003","배수지","010-0000-0005","bsj@test.com",5,8,"2015.07.22",3);
+
+
+insert into user values ("USER000006", "APT000000001", "POS004","박서준","010-0000-0006","psj@test.com",6,2,"2015.08.22",3);
+insert into user values ("USER000007", "APT000000001", "POS004","한혜진","010-0000-0007","hhj@test.com",7,1,"2015.08.22",3);
+
+insert into user values ("USER000008", "APT000000001", "POS005","제니","010-0000-0008","jn@test.com",2,1,"2017.08.26",3);
+insert into user values ("USER000009", "APT000000001", "POS005","윤아","010-0000-0009","ya@test.com",5,3,"2020.10.15",3);
+insert into user values ("USER000010", "APT000000001", "POS005","아이유","010-0000-0010","IU@test.com",2,3,"2017.12.25",3);
+
+insert into user values ("USER000011", "APT000000001", "POS006","버벌진트","010-0000-0011","b2@test.com",9,1,"2017.12.25",3);
+
+
+// 회의  -------------------------------------------------------------
+
+insert into conference values ("CON00001", "2020-11-11 18:30:00", "이나윤","USER000001","2020.11.01 19:35:40",null,0,1,"회장에게 전화로 신청해주세요","202동 304호","2020.11.05","2020.11.11","각 동 게시판","관리사무소장","2020-01호",null,null,null,null,null,null,null,null,null,null,null,null,null);
+
+insert into conference values ("CON00002", "2020-11-11 18:30", "이나윤","USER000001","2020.11.01 19:35:40",null,0,1,"회장에게 전화로 신청해주세요","202동 304호","2020.11.05","2020.11.11","각 동 게시판","관리사무소장","2020-01호",null,null,null,null,null,null,null,null,null,null,null,null,null);
+
+insert into conference values ("CON00003", "2020-11-11 18:30", "이나윤","USER000001","2020.11.01 19:35:40",null,0,1,"회장에게 전화로 신청해주세요","202동 304호","2020.11.05","2020.11.11","각 동 게시판","관리사무소장","2020-01호",null,null,null,null,null,null,null,null,null,null,null,null,null);
+
+insert into conference values ("CON00004", "2020-11-11 18:30", "이나윤","USER000001","2020.11.01 19:35:40",null,0,1,"회장에게 전화로 신청해주세요","202동 304호","2020.11.05","2020.11.11","각 동 게시판","관리사무소장","2020-01호",null,null,null,null,null,null,null,null,null,null,null,null,null);
+
+insert into conference values ("CON00005", "2020-11-11 18:30", "이나윤","USER000001","2020.11.01 19:35:40",null,0,1,"회장에게 전화로 신청해주세요","202동 304호","2020.11.05","2020.11.11","각 동 게시판","관리사무소장","2020-01호",null,null,null,null,null,null,null,null,null,null,null,null,null);
+
+
+// 안건  -------------------------------------------------------------
+
+insert into agenda values ("AGD00001", "CON00001", "심장자동충격기 구매 건1","법적의무비치사항인 자동심장충격기 구매에 대한 안건입니다.1",1,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+insert into agenda values ("AGD00002", "CON00001", "심장자동충격기 구매 건2","법적의무비치사항인 자동심장충격기 구매에 대한 안건입니다.2",1,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+insert into agenda values ("AGD00003", "CON00002", "심장자동충격기 구매 건3","법적의무비치사항인 자동심장충격기 구매에 대한 안건입니다.3",1,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+insert into agenda values ("AGD00004", "CON00003", "심장자동충격기 구매 건4","법적의무비치사항인 자동심장충격기 구매에 대한 안건입니다.4",1,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+insert into agenda values ("AGD00005", "CON00004", "심장자동충격기 구매 건5","법적의무비치사항인 자동심장충격기 구매에 대한 안건입니다.5",1,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+insert into agenda values ("AGD00006", "CON00005", "심장자동충격기 구매 건6","법적의무비치사항인 자동심장충격기 구매에 대한 안건입니다.6",1,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+insert into agenda values ("AGD00007", "CON00005", "심장자동충격기 구매 건7","법적의무비치사항인 자동심장충격기 구매에 대한 안건입니다.7",1,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+
+
+
+insert into conference values ("sample1", "ㄷㅇㄷㅌㅁㄴ", "2020-11-08 15:20", "이나윤","USER000001","2020-11-17 23:59:17",null,0,1,"ㄷㅇㄷㅌㅁㄴㅁㅇㄴ","123ㅁㄴㅇ","2020-11-10","2020-12-17","ㅇㅁㄴ","213","123",null,	null,null,null,null,null,null,null,	null,null,null,null,null);
+
+

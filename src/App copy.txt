@@ -1,0 +1,55 @@
+// import React, { useEffect, useState } from 'react';
+// import { BrowserRouter as Router, Redirect } from 'react-router-dom';
+// import Login from './pages/Login/Login';
+// import { Link } from 'react-router-dom';
+
+// const Login = (props) => {
+//   const [loginState, setLoginState] = useState('Logout');
+//   //const [loginState, setLoginState] = useState('Login');
+
+//   const handleLogOut = async () => {
+//     setLoginState('Logout');
+//   };
+
+//   const handleLogin = async () => {
+//     setLoginState('Login');
+//   };
+
+//   useEffect(() => {
+//     if (loginState == 'Logout') {
+//       console.log('로그아웃');
+//     } else {
+//       console.log('로그인');
+//     }
+//   });
+
+//   return (
+//     <div>
+//       <p>라우터 설정</p>
+//       <Link to="/">home</Link>
+//       <Link to="/login">login</Link>
+//       <Link to="/conference">conference</Link>
+//       <Link to="/agendaList">agendaList</Link>
+//       <Link to="/admin">admin</Link>
+//       <Link to="/myPage">myPage</Link>
+//     </div>
+//   );
+
+//   //return <Login />;
+
+//   if (loginState == 'Login') {
+//     return (
+//       <Router>
+//         <Redirect to="/" />
+//       </Router>
+//     );
+//   } else {
+//     return (
+//       <Router>
+//         <Redirect to="/login" />
+//       </Router>
+//     );
+//   }
+// };
+
+// export default Login;
